@@ -15,10 +15,9 @@ def main() -> None:
     draw_fake_woman(vrinda, x + 300, y, 3)
     done()
 
-# To DO:
-# Create face
+# TODO:
 # Add colors to background
-# DOne
+# Done!
 
 
 def draw_background(vrinda: Turtle, r: int, g: int, b: int) -> None:
@@ -42,11 +41,13 @@ def draw_background(vrinda: Turtle, r: int, g: int, b: int) -> None:
 
 def draw_real_woman(vrinda: Turtle, x: int, y: int) -> None:
     vrinda.pencolor(22, 20, 84)
+    draw_face(vrinda, x, y)
     draw_half_shoulder(vrinda, x, y)
+    draw_neck(vrinda, x, y)
     draw_arm(vrinda, x, y)
-    draw_bobs(vrinda, x, y)
+    draw_chest(vrinda, x, y)
     draw_hips(vrinda, x, y)
-    draw_cross(vrinda, x, y)
+    draw_pelvis(vrinda, x, y)
     return
 
 
@@ -56,9 +57,9 @@ def draw_fake_woman(vrinda: Turtle, x: int, y: int, count: int) -> None:
         draw_half_shoulder(vrinda, x, y)
     else:
         draw_shoulders(vrinda, x, y)
-    draw_bobs(vrinda, x, y)
+    draw_chest(vrinda, x, y)
     draw_hips(vrinda, x, y)
-    draw_cross(vrinda, x, y)
+    draw_pelvis(vrinda, x, y)
     if count > 0:
         draw_fake_woman(vrinda, x + 253, y, count - 1)
     return
@@ -87,6 +88,22 @@ def draw_half_shoulder(vrinda: Turtle, x: int, y: int) -> None:
     vrinda.right(180)
     vrinda.circle(400, 10)
     vrinda.forward(30)
+    return
+
+
+def draw_neck(vrinda: Turtle, x: int, y: int) -> None:
+    vrinda.speed(100)
+    vrinda.penup()  # neck1
+    vrinda.goto(x + 91, y + 142)
+    vrinda.pendown()
+    vrinda.setheading(60)
+    vrinda.circle(30, 45)
+    vrinda.penup()  # neck2
+    vrinda.goto(x + 131, y + 142)
+    vrinda.pendown()
+    vrinda.setheading(300)
+    vrinda.circle(30, -45)
+
     return
 
 
@@ -135,9 +152,9 @@ def draw_shoulders(vrinda: Turtle, x: int, y: int) -> None:
     return
 
 
-def draw_bobs(vrinda: Turtle, x: int, y: int) -> None:
+def draw_chest(vrinda: Turtle, x: int, y: int) -> None:
     vrinda.speed(100)
-    vrinda.penup()  # bob1
+    vrinda.penup()  # b1
     vrinda.goto(x + 55, y + 100)
     vrinda.pendown()
     vrinda.setheading(270)
@@ -149,29 +166,29 @@ def draw_bobs(vrinda: Turtle, x: int, y: int) -> None:
     vrinda.penup()
     vrinda.setheading(0)
     vrinda.forward(20)
-    vrinda.pendown()  # bob2
+    vrinda.pendown()  # b2
     vrinda.setheading(280)
     vrinda.circle(50, 40)
     vrinda.setheading(340)
     vrinda.circle(10, 30)
     vrinda.circle(10, 30)
     vrinda.circle(50, 40)
-    draw_naps(vrinda, x, y)
+    draw_dots(vrinda, x, y)
     return
 
 
-def draw_naps(vrinda: Turtle, x: int, y: int) -> None:
+def draw_dots(vrinda: Turtle, x: int, y: int) -> None:
     vrinda.speed(100)
     vrinda.penup()
     vrinda.pensize(2)
     vrinda.setheading(0)
     vrinda.goto(x + 72, y + 80)
     vrinda.pendown()
-    vrinda.dot()  # nap1
+    vrinda.dot()  # n1
     vrinda.penup()
     vrinda.forward(68)
     vrinda.pendown()
-    vrinda.dot()  # nap2
+    vrinda.dot()  # n2
     return
 
 
@@ -195,7 +212,7 @@ def draw_hips(vrinda: Turtle, x: int, y: int) -> None:
     return
 
 
-def draw_cross(vrinda: Turtle, x: int, y: int) -> None:
+def draw_pelvis(vrinda: Turtle, x: int, y: int) -> None:
     vrinda.speed(100)
     vrinda.penup()  # long line
     vrinda.goto(x + 95, y + -30)
@@ -208,6 +225,52 @@ def draw_cross(vrinda: Turtle, x: int, y: int) -> None:
     vrinda.pendown()
     vrinda.setheading(243)
     vrinda.circle(200, -10)
+    return
+
+
+def draw_face(vrinda: Turtle, x: int, y: int) -> None:
+    vrinda.speed(100)
+    vrinda.pensize(3)
+    vrinda.penup()
+    vrinda.goto(x + 103, y + 220)
+    vrinda.pendown()  # eye1
+    vrinda.setheading(130)
+    vrinda.circle(12, 21)
+    vrinda.circle(12, 91)
+    vrinda.setheading(300)
+    vrinda.circle(12, 91)
+    vrinda.circle(12, 21)
+    vrinda.goto(x + 104, y + 219)
+    vrinda.setheading(160)  # mouth
+    vrinda.circle(27, -100)
+    vrinda.circle(11, -310)
+    vrinda.speed(100)
+    vrinda.penup()  # eye2
+    vrinda.goto(x + 140, y + 220)
+    vrinda.pendown()
+    vrinda.setheading(130)
+    vrinda.circle(11, 21)
+    vrinda.circle(11, 91)
+    vrinda.setheading(300)
+    vrinda.circle(11, 91)
+    vrinda.circle(11, 21)
+    vrinda.goto(x + 141, y + 219)
+    vrinda.penup()
+    vrinda.goto(x + 113, y + 250)  # hair1
+    vrinda.pendown()
+    vrinda.setheading(120)
+    vrinda.circle(23, 90)
+    vrinda.circle(30, 50)
+    vrinda.forward(50)
+    vrinda.circle(20, 80)
+    vrinda.penup()
+    vrinda.goto(x + 113, y + 250)  # hair2
+    vrinda.pendown()
+    vrinda.setheading(240)
+    vrinda.circle(23, -90)
+    vrinda.circle(30, -50)
+    vrinda.forward(-50)
+    vrinda.circle(20, -80)
     return
 
 
