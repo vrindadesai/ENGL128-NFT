@@ -1,18 +1,26 @@
 """My NFT contribution for ENGL 128!"""
 
-from turtle import Turtle, colormode, done
+from turtle import Screen, Turtle, colormode, done
+import random
 
 colormode(255)
+screen = Screen()
+screen.setup(1000, 2000)
 
 
 def main() -> None:
     """The entrypoint for my image."""
     vrinda: Turtle = Turtle()
-    x: int = -650
+    x: int = -350
     y: int = 0
-    draw_background(vrinda, 255, 240, 230)
+    draw_background(vrinda, -800, -1000, 50, 4)
+    draw_background(vrinda, -600, -1000, 40, 5)
+    draw_background(vrinda, -400, -1000, 30, 10)
+    draw_background(vrinda, -100, -1000, 20, 10)
+    draw_background(vrinda, 100, -1000, 10, 30)
+    draw_background(vrinda, 400, -1000, 5, 100)
     draw_real_woman(vrinda, x, y)
-    draw_fake_woman(vrinda, x + 300, y, 3)
+    draw_fake_woman(vrinda, x + 300, y, 2)
     done()
 
 # TODO:
@@ -20,27 +28,42 @@ def main() -> None:
 # Done!
 
 
-def draw_background(vrinda: Turtle, r: int, g: int, b: int) -> None:
+def draw_background(vrinda: Turtle, x: int, y: int, move: int, counter: int) -> None:
     """Fills in the background, customized by color."""
-    vrinda.speed(100)
-    vrinda.penup()
-    vrinda.goto(-1000, -1000)
-    vrinda.setheading(0.0)
-    vrinda.pendown()
-    vrinda.pencolor(r, g, b)
-    vrinda.fillcolor(r, g, b)
-    vrinda.begin_fill()
-    i: int = 0
-    while i < 4:
+    # if r < 1 or r > 254:
+    # r = 204
+    # if g < 1 or g > 254:
+    #   g = 102
+    # if b < 1 or b > 254:
+    #b = 153
+    r: int = random.randint(1, 255)
+    g: int = random.randint(1, 255)
+    b: int = random.randint(1, 255)
+    if counter > 0:
+        vrinda.speed(100)
+        vrinda.penup()
+        vrinda.goto(x, y)
+        vrinda.setheading(0.0)
+        vrinda.pendown()
+        vrinda.pencolor(r, g, b)
+        vrinda.fillcolor(r, g, b)
+        vrinda.begin_fill()
+        vrinda.forward(move)
+        vrinda.left(90)
         vrinda.forward(2000)
         vrinda.left(90)
-        i = i + 1
-    vrinda.end_fill()
-    vrinda.hideturtle()
+        vrinda.forward(move)
+        vrinda.left(90)
+        vrinda.forward(2000)
+        vrinda.end_fill()
+        vrinda.hideturtle()
+        draw_background(vrinda, x + move, y, move, counter - 1)
+    else:
+        return
 
 
 def draw_real_woman(vrinda: Turtle, x: int, y: int) -> None:
-    vrinda.pencolor(22, 20, 84)
+    vrinda.pencolor(255, 204, 204)
     draw_face(vrinda, x, y)
     draw_half_shoulder(vrinda, x, y)
     draw_neck(vrinda, x, y)
@@ -52,7 +75,7 @@ def draw_real_woman(vrinda: Turtle, x: int, y: int) -> None:
 
 
 def draw_fake_woman(vrinda: Turtle, x: int, y: int, count: int) -> None:
-    vrinda.pencolor(204, 102, 0)
+    vrinda.pencolor(230, 242, 255)
     if count == 0:
         draw_half_shoulder(vrinda, x, y)
     else:
@@ -67,7 +90,7 @@ def draw_fake_woman(vrinda: Turtle, x: int, y: int, count: int) -> None:
 
 def draw_half_shoulder(vrinda: Turtle, x: int, y: int) -> None:
     vrinda.speed(100)
-    vrinda.pensize(3)
+    vrinda.pensize(5)
     vrinda.penup()
     vrinda.goto(x, y)
     vrinda.setheading(70)
@@ -120,7 +143,7 @@ def draw_arm(vrinda: Turtle, x: int, y: int) -> None:
 
 def draw_shoulders(vrinda: Turtle, x: int, y: int) -> None:
     vrinda.speed(100)
-    vrinda.pensize(3)
+    vrinda.pensize(5)
     vrinda.penup()
     vrinda.goto(x, y)
     vrinda.setheading(70)
@@ -180,7 +203,7 @@ def draw_chest(vrinda: Turtle, x: int, y: int) -> None:
 def draw_dots(vrinda: Turtle, x: int, y: int) -> None:
     vrinda.speed(100)
     vrinda.penup()
-    vrinda.pensize(2)
+    vrinda.pensize(5)
     vrinda.setheading(0)
     vrinda.goto(x + 72, y + 80)
     vrinda.pendown()
@@ -195,7 +218,7 @@ def draw_dots(vrinda: Turtle, x: int, y: int) -> None:
 def draw_hips(vrinda: Turtle, x: int, y: int) -> None:
     vrinda.speed(100)
     vrinda.penup()  # hip1
-    vrinda.pensize(3)
+    vrinda.pensize(5)
     vrinda.goto(x + 55, y + 70)
     vrinda.pendown()
     vrinda.setheading(110)
@@ -230,7 +253,7 @@ def draw_pelvis(vrinda: Turtle, x: int, y: int) -> None:
 
 def draw_face(vrinda: Turtle, x: int, y: int) -> None:
     vrinda.speed(100)
-    vrinda.pensize(3)
+    vrinda.pensize(5)
     vrinda.penup()
     vrinda.goto(x + 103, y + 220)
     vrinda.pendown()  # eye1
